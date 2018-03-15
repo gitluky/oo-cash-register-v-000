@@ -16,7 +16,7 @@ class CashRegister
   end
 
   def add_item(title, price, quantity = 1)
-
+    puts "${current_transaction}"
   end
 
   def apply_discount
