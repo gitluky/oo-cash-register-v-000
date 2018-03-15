@@ -17,7 +17,7 @@ class CashRegister
 
   def add_item(title, price, quantity = 1)
     current_transaction[title] ||= {}
-    current_transaction[title][price] += 1 || = quantity
+    current_transaction[title][price] += 1 || current_transaction[title][price] = quantity
     @total = current_transaction.collect do |title, prices|
       prices.collect {|price, quantity| price * quantity}
     end
