@@ -33,5 +33,5 @@ class CashRegister
   end
 end
 
-add_item(eggs, 2.00)
-add_item(milk, 3.00, 2)
+add_item('eggs', 2.00)
+add_item('milk', 3.00, 2)
