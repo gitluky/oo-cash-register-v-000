@@ -16,12 +16,7 @@ class CashRegister
   end
 
   def add_item(title, price, quantity = 1)
-    current_transaction[title] ||= {}
-    current_transaction[title][price] += quantity
-    @total = current_transaction.collect do |title, prices|
-      prices.collect {|price, quantity| price * quantity}
-    end
-    @total = new_total.flatten.inject(:+) || 0
+
   end
 
   def apply_discount
