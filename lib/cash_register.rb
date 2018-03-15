@@ -17,7 +17,8 @@ class CashRegister
 
   def add_item(title, price, quantity = 1)
     current_transaction[title] = {}
-    current_transaction[title][price] || current_transaction[title][price] += quantity
+    binding.pry
+    current_transaction[title][price]
 
     @total = current_transaction.collect {|items| items.key * items.value}.flatten.inject(:+)
 
@@ -31,3 +32,6 @@ class CashRegister
 
   end
 end
+
+add_item(eggs, 2.00)
+add_item(milk, 3.00, 2)
