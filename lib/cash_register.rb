@@ -17,7 +17,7 @@ class CashRegister
 
   def add_item(title, price, quantity = 1)
     current_transaction[title] = {}
-    current_transaction[title][price] += 1
+    current_transaction[title][price].values += 1
 
     @total = current_transaction.collect {|items| items.key * items.value}.flatten.inject(:+)
 
