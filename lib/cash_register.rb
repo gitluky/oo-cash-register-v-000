@@ -19,7 +19,7 @@ class CashRegister
       end
       self.total = total.flatten.inject(:+)
     else
-      self.total.
+      self.total
     end
   end
 
