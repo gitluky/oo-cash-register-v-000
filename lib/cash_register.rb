@@ -33,7 +33,7 @@ class CashRegister
       items << title
       i+=1
     end
-    @@t << [title,price,quantity]
+    @@transactions << [title,price,quantity]
     binding.pry
   end
 
