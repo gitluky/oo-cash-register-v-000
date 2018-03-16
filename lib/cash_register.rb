@@ -34,8 +34,7 @@ class CashRegister
       items << title
       i+=1
     end
-    most_recent_item = current_transaction[title][price][quantity]
-    binding.pry
+    self.class.transactions < [title,price,quantity]
   end
 
   def apply_discount
