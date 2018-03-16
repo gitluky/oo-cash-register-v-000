@@ -41,7 +41,6 @@ class CashRegister
   end
 
   def apply_discount
-    binding.pry
     if self.discount != nil
       @total *= (1 - self.discount/100.00)
       "After the discount, the total comes to $#{self.total.to_i}."
@@ -58,8 +57,3 @@ class CashRegister
     @total = current_total.flatten.inject(:+)
   end
 end
-
-new_transaction = CashRegister.new(20)
-new_transaction.add_item('apple laptop',1000.00)
-new_transaction.apply_discount
-new_transaction.void_last_transaction
