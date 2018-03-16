@@ -34,7 +34,7 @@ class CashRegister
       items << title
       i+=1
     end
-    self.class.transactions << [title,price,quantity]
+    @@transactions << [title,price,quantity]
   end
 
   def apply_discount
@@ -48,7 +48,7 @@ class CashRegister
 
   def void_last_transaction
     puts "current_transaction was #{current_transaction}"
-    current_transaction = current_transaction[self.class.transactions[-1][0]][self.class.transactions[-1][1]] - [self.class.transactions[-1][1]]
+    current_transaction = current_transaction[@@transactions[-1][0]][@@transactions[-1][1]] - [@@transactions[-1][1]]
     puts "the updated transaction is #{current_transaction}"
   end
 end
