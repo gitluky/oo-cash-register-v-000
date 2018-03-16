@@ -14,16 +14,14 @@ class CashRegister
 
   def total
     if self.current_transaction != {}
-      current_total = current_transaction.collect do |items, prices|
-        prices.collect {|price, quantity| price * quantity}
-      end
-      @total = current_total.flatten.inject(:+)
+
     else
       @total
     end
   end
 
   def add_item(title, price, quantity = 1)
+    #if item doesn't exist, it'll create a key for the item and a hash {price=>quantity}
     if current_transaction.has_key?(title)
       if current_transaction[title].has_key?(price)
         current_transaction[title][price]+=quantity
@@ -31,7 +29,11 @@ class CashRegister
     else
       current_transaction[title] = {price=>quantity}
     end
-    self.total
+
+    current_total = current_transaction.collect do |items, prices|
+      prices.collect {|price, quantity| price * quantity}
+    end
+    @total = current_total.flatten.inject(:+)
     i = 0
     while i < quantity
       items << title
