@@ -13,7 +13,10 @@ class CashRegister
   end
 
   def total
-    @total
+    total = current_transaction.collect do |items, prices|
+      prices.collect {|price, quantity| price * quantity}
+    end
+    self.total = total.flatten.inject(:+)
   end
 
   def add_item(title, price, quantity = 1)
@@ -24,10 +27,7 @@ class CashRegister
     else
       current_transaction[title] = {price=>quantity}
     end
-    total = current_transaction.collect do |items, prices|
-      prices.collect {|price, quantity| price * quantity}
-    end
-    self.total = total.flatten.inject(:+)
+
     i = 0
     while i < quantity
       items << title
@@ -47,6 +47,7 @@ class CashRegister
 
   def void_last_transaction
     self.current_transaction[@@transactions[-1][0]][@@transactions[-1][1]] -= [@@transactions[-1][2]].inject(0.00,:+)
+
   end
 end
 
