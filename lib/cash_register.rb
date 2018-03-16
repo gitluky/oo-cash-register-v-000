@@ -17,9 +17,9 @@ class CashRegister
       total = current_transaction.collect do |items, prices|
         prices.collect {|price, quantity| price * quantity}
       end
-      self.total = total.flatten.inject(:+)
+      @total = total.flatten.inject(:+)
     else
-      self.total
+      @total
     end
   end
 
