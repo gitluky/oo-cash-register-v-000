@@ -13,7 +13,7 @@ class CashRegister
   end
 
   def total
-    if current_transaction
+    if self.current_transaction != nil
       total = current_transaction.collect do |items, prices|
         prices.collect {|price, quantity| price * quantity}
       end
