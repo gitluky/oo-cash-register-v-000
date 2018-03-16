@@ -23,10 +23,10 @@ class CashRegister
     else
       current_transaction[title] = {price=>quantity}
     end
-    total = current_transaction.collect do |items, prices|
+    self.total = current_transaction.collect do |items, prices|
       prices.collect {|price, quantity| price * quantity}
     end
-    @total = total.flatten.inject(:+)
+    self.total = self.total.flatten.inject(:+)
   end
 
   def apply_discount
