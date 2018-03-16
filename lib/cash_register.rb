@@ -34,6 +34,7 @@ class CashRegister
       items << title
       i+=1
     end
+    most_recent_item = current_transaction[title][price][quantity]
   end
 
   def apply_discount
@@ -45,6 +46,9 @@ class CashRegister
     end
   end
 
+  def void_last_transaction
+
+  end
 end
 
 new_transaction = CashRegister.new
