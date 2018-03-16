@@ -42,3 +42,4 @@ end
 new_transaction = CashRegister.new
 new_transaction.add_item('eggs', 2.00)
 new_transaction.add_item('milk', 3.00, 2)
+binding.pry
