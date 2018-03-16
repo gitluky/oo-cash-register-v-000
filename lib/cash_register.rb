@@ -55,8 +55,7 @@ class CashRegister
   end
 end
 
-new_transaction = CashRegister.new
-new_transaction.add_item('eggs', 2.00)
-new_transaction.add_item('milk', 3.00, 2)
-new_transaction.add_item('milk', 3.00, 3)
+new_transaction = CashRegister.new(20)
+new_transaction.add_item('apple laptop',1000.00)
+new_transaction.apply_discount
 new_transaction.void_last_transaction
