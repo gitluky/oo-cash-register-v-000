@@ -46,7 +46,7 @@ class CashRegister
   end
 
   def void_last_transaction
-    self.current_transaction[@@transactions[-1][0]][@@transactions[-1][1]] -= [@@transactions[-1][2]].inject(0.00:+)
+    self.current_transaction[@@transactions[-1][0]][@@transactions[-1][1]] -= [@@transactions[-1][2]].inject(0.00,:+)
   end
 end
 
