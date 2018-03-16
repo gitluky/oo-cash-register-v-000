@@ -1,57 +1,44 @@
 require 'pry'
 
 class CashRegister
-  attr_accessor :total, :discount, :shopping_cart, :items
+  @@transactions = []
 
-    def initialize(discount = nil)
-      @discount = discount || 0
-      @total = 0
-      @shopping_cart ||= {}
-      @items = []
-    end
+  attr_accessor :total,:items,:discount,:current_transaction
 
-    def total
-      @total
-    end
+  def initialize(discount = nil)
+    @total = 0
+    @discount = discount
+    @current_transaction = {}
+  end
 
-    def discount
-      @discount
-    end
+  def total
+    @total
+  end
 
-    def items
-      @items
-    end
-
-    def add_item(title,price, quantity = 1)
-      i = 1
-      while i <= quantity
-        self.items << title
-        i += 1
+  def add_item(title, price, quantity = 1)
+    if current_transaction.has_key?(title)
+      if current_transaction[title].has_key?(price)
+        current_transaction[title][price]+=quantity
       end
-      self.shopping_cart[title] ||= {} #creates hash if non-existent
-      self.shopping_cart[title][price] = quantity #adds a pricepoint and quantity for the item at that pricepoint
-      self.total = self.shopping_cart.collect {|title, prices| prices.keys[0] * prices.values[0]}.inject(:+) || 0#creates an array of price * quantity for each item and sums them, then updates @total
-      binding.pry
-      self.shopping_cart
+    else
+      current_transaction[title] = {price=>quantity}
     end
+    total = current_transaction.collect do |items, prices|
+      prices.collect {|price, quantity| price * quantity}
+    end
+    self.total = total.flatten.inject(:+)
+  end
 
-    def apply_discount
-      if self.discount > 0
-        self.total -= self.total * (self.discount * 0.01)
-        "After the discount, the total comes to $#{self.total.to_i}."
-      else
-        "There is no discount to apply."
-      end
-    end
+  def apply_discount
 
-    def void_last_transaction
-      self.shopping_cart.clear
-      self.total = 0
-    end
+  end
+
+  def items
+
+  end
 end
 
 new_transaction = CashRegister.new
 new_transaction.add_item('eggs', 2.00)
 new_transaction.add_item('milk', 3.00, 2)
-new_transaction.add_item('milk', 2.00, 3)
-binding.pry
+new_transaction.add_item('milk', 3.00, 3)
