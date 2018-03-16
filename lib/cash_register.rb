@@ -29,7 +29,11 @@ class CashRegister
       prices.collect {|price, quantity| price * quantity}
     end
     self.total = total.flatten.inject(:+)
-    items << title * quantity
+    i = 0
+    while i < quantity
+      items << title
+      i+=1
+    end
   end
 
   def apply_discount
