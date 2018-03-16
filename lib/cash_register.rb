@@ -16,11 +16,17 @@ class CashRegister
   end
 
   def add_item(title, price, quantity = 1)
-    current_transaction[title] = {}
-    binding.pry
-    current_transaction[title][price]
+    if current_transaction.has_key?(title)
+      if current_transaction[title].has_key?(price)
+        current_transaction[title][price]+=1
+      end
+    else
+      current transaction[title] = {price=>quantity}
+    end
 
-    @total = current_transaction.collect {|items| items.key * items.value}.flatten.inject(:+)
+
+
+#    @total = current_transaction.collect {|items| items.key * items.value}.flatten.inject(:+)
 
   end
 
