@@ -35,6 +35,7 @@ class CashRegister
       i+=1
     end
     @@transactions << [title,price,quantity]
+    binding.pry
   end
 
   def apply_discount
