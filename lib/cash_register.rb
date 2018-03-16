@@ -30,7 +30,7 @@ class CashRegister
   end
 
   def apply_discount
-
+    self.total = self.total * (self.discount*0.01)
   end
 
   def items
