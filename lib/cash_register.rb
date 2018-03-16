@@ -8,6 +8,7 @@ class CashRegister
   def initialize(discount = nil)
     @total = 0
     @discount = discount
+    @items = []
     @current_transaction = {}
     @@transactions << self
   end
@@ -28,6 +29,7 @@ class CashRegister
       prices.collect {|price, quantity| price * quantity}
     end
     self.total = total.flatten.inject(:+)
+    items << title
   end
 
   def apply_discount
