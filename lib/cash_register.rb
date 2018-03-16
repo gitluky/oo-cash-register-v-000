@@ -40,7 +40,7 @@ class CashRegister
       items << title
       i+=1
     end
-    #adds an array to the @@transactions clas array with title, price and quantity
+    #adds an array to the @@transactions clas array with title, price and quantity **used to void the last entered item for #void_last_transaction**
     @@transactions << [title,price,quantity]
   end
 
