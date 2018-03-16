@@ -19,7 +19,7 @@ class CashRegister
     binding.pry
     if current_transaction.has_key?(title)
       if current_transaction[title].has_key?(price)
-        current_transaction[title][price]+=1
+        current_transaction[title][price]+=quantity
       end
       binding.pry
     else
