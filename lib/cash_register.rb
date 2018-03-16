@@ -52,7 +52,10 @@ class CashRegister
 
   def void_last_transaction
     self.current_transaction[@@transactions[-1][0]][@@transactions[-1][1]] -= [@@transactions[-1][2]].inject(0.00,:+)
-
+    current_total = current_transaction.collect do |items, prices|
+      prices.collect {|price, quantity| price * quantity}
+    end
+    @total = current_total.flatten.inject(:+)
   end
 end
 
