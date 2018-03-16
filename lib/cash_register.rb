@@ -16,8 +16,8 @@ class CashRegister
   end
 
   def add_item(title, price, quantity = 1)
+    binding.pry
     if current_transaction.has_key?(title)
-      binding.pry
       if current_transaction[title].has_key?(price)
         current_transaction[title][price]+=1
       end
