@@ -47,7 +47,9 @@ class CashRegister
   end
 
   def void_last_transaction
-
+    puts "current_transaction was #{current_transaction}"
+    current_transaction = current_transaction[self.class.transactions[-1][0]][self.class.transactions[-1][1]] - [self.class.transactions[-1][1]]
+    puts "the updated transaction is #{current_transaction}"
   end
 end
 
