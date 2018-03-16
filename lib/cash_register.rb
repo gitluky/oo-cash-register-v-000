@@ -31,7 +31,7 @@ class CashRegister
     else
       current_transaction[title] = {price=>quantity}
     end
-    total
+    self.total
     i = 0
     while i < quantity
       items << title
