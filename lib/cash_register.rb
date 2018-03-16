@@ -40,6 +40,7 @@ class CashRegister
       items << title
       i+=1
     end
+    #adds an array to the @@transactions clas array with title, price and quantity
     @@transactions << [title,price,quantity]
   end
 
