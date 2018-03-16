@@ -9,6 +9,7 @@ class CashRegister
     @total = 0
     @discount = discount
     @current_transaction = {}
+    @@transactions << self
   end
 
   def total
