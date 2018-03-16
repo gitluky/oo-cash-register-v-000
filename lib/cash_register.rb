@@ -29,11 +29,12 @@ class CashRegister
     else
       current_transaction[title] = {price=>quantity}
     end
-
+    #updates the total
     current_total = current_transaction.collect do |items, prices|
       prices.collect {|price, quantity| price * quantity}
     end
     @total = current_total.flatten.inject(:+)
+    #adds the items to the array the quantity of times entered
     i = 0
     while i < quantity
       items << title
