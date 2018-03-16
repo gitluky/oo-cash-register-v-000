@@ -1,7 +1,7 @@
 require 'pry'
 
 class CashRegister
-  @@transactions = []
+  @@t = []
 
   attr_accessor :total,:items,:discount,:current_transaction
 
@@ -33,7 +33,7 @@ class CashRegister
       items << title
       i+=1
     end
-    @@transactions << [title,price,quantity]
+    @@t << [title,price,quantity]
     binding.pry
   end
 
@@ -48,7 +48,7 @@ class CashRegister
 
   def void_last_transaction
     puts "current_transaction was #{current_transaction}"
-    self.current_transaction = self.current_transaction[@@transactions[-1][0]][@@transactions[-1][1]] - [@@transactions[-1][1]]
+    self.current_transaction = self.current_transaction[@@t[-1][0]][@@t[-1][1]] - [@@t[-1][1]]
     puts "the updated transaction is #{current_transaction}"
   end
 end
