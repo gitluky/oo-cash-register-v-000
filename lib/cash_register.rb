@@ -13,6 +13,7 @@ class CashRegister
   end
 
   def total
+    if self.current_transaction != {}
     @total
   end
 
