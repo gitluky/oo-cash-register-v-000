@@ -30,7 +30,6 @@ class CashRegister
       end
       self.shopping_cart[title] ||= {} #creates hash if non-existent
       self.shopping_cart[title][price] = quantity #adds a pricepoint and quantity for the item at that pricepoint
-      binding.pry
       self.total = self.shopping_cart.collect {|title, prices| prices.keys[0] * prices.values[0]}.inject(:+) || 0#creates an array of price * quantity for each item and sums them, then updates @total
       self.shopping_cart
     end
