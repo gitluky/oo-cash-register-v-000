@@ -10,7 +10,6 @@ class CashRegister
     @discount = discount
     @items = []
     @current_transaction = {}
-    @@transactions << self
   end
 
   def total
