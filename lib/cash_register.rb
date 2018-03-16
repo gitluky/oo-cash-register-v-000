@@ -16,18 +16,17 @@ class CashRegister
   end
 
   def add_item(title, price, quantity = 1)
-    binding.pry
     if current_transaction.has_key?(title)
       if current_transaction[title].has_key?(price)
         current_transaction[title][price]+=quantity
       end
-      binding.pry
     else
       current_transaction[title] = {price=>quantity}
     end
-
-#    @total = current_transaction.collect {|items| items.key * items.value}.flatten.inject(:+)
-
+    total = current_transaction.collect do |items, prices|
+      prices.collect {|price, quantity| price * quantity}
+    end
+    total = total.flatten.inject(:+)
   end
 
   def apply_discount
