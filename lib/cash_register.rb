@@ -34,7 +34,7 @@ class CashRegister
       items << title
       i+=1
     end
-    self.class.transactions < [title,price,quantity]
+    self.class.transactions << [title,price,quantity]
   end
 
   def apply_discount
