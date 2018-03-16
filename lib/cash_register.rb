@@ -23,10 +23,8 @@ class CashRegister
       end
       binding.pry
     else
-      current transaction[title] = {price=>quantity}
+      current_transaction[title] = {price=>quantity}
     end
-
-
 
 #    @total = current_transaction.collect {|items| items.key * items.value}.flatten.inject(:+)
 
