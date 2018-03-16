@@ -13,11 +13,7 @@ class CashRegister
   end
 
   def total
-    if self.current_transaction != {}
-
-    else
-      @total
-    end
+    @total
   end
 
   def add_item(title, price, quantity = 1)
