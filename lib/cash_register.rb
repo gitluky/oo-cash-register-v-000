@@ -57,3 +57,4 @@ new_transaction = CashRegister.new
 new_transaction.add_item('eggs', 2.00)
 new_transaction.add_item('milk', 3.00, 2)
 new_transaction.add_item('milk', 3.00, 3)
+new_transaction.void_last_transaction
