@@ -1,41 +1,52 @@
 require 'pry'
 
 class CashRegister
-  @@transactions = []
+  attr_accessor :total, :discount, :shopping_cart, :items
 
-  attr_accessor :total,:items,:discount,:current_transaction
+    def initialize(discount = nil)
+      @discount = discount || 0
+      @total = 0
+      @shopping_cart ||= {}
+      @items = []
+    end
 
-  def initialize(discount = nil)
-    @total = 0
-    @discount = discount
-    @current_transaction = {}
-  end
+    def total
+      @total
+    end
 
-  def total
-    @total
-  end
+    def discount
+      @discount
+    end
 
-  def add_item(title, price, quantity = 1)
-    if current_transaction.has_key?(title)
-      if current_transaction[title].has_key?(price)
-        current_transaction[title][price]+=quantity
+    def items
+      @items
+    end
+
+    def add_item(title,price, quantity = 1)
+      i = 1
+      while i <= quantity
+        self.items << title
+        i += 1
       end
-    else
-      current_transaction[title] = {price=>quantity}
+      self.shopping_cart[title] ||= {} #creates hash if non-existent
+      self.shopping_cart[title][price] = quantity #adds a pricepoint and quantity for the item at that pricepoint
+      self.total = self.shopping_cart.collect {|title, prices| prices.keys[0] * prices.values[0]}.inject(:+) || 0#creates an array of price * quantity for each item and sums them, then updates @total
+      self.shopping_cart
     end
-    total = current_transaction.collect do |items, prices|
-      prices.collect {|price, quantity| price * quantity}
+
+    def apply_discount
+      if self.discount > 0
+        self.total -= self.total * (self.discount * 0.01)
+        "After the discount, the total comes to $#{self.total.to_i}."
+      else
+        "There is no discount to apply."
+      end
     end
-    self.total = total.flatten.inject(:+)
-  end
 
-  def apply_discount
-
-  end
-
-  def items
-
-  end
+    def void_last_transaction
+      self.shopping_cart.clear
+      self.total = 0
+    end
 end
 
 new_transaction = CashRegister.new
